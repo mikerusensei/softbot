@@ -7,12 +7,13 @@ from summarizer import summarize
 from datetime import datetime, timedelta
 
 from scraper import Scraper_Url, Scraper_Article
-from command import Load_JSON, Save_JSON
+from command import Load_JSON, Save_JSON, Directory
 
 
 class App:
     def __init__(self):
-        self.file_path = "data.json"
+        Directory().execute()
+        self.file_path = "C:\\softbot\\data.json"
         self.cache = Load_JSON(self.file_path).execute()
         self.current_time = datetime.now()
         self.end_day = self.current_time.replace(hour=23, minute=59, second=0, microsecond=0)
@@ -84,7 +85,7 @@ class App:
                         "url": url,
                         "date": date.strftime("%Y-%m-%d %H:%M:%S")
                     }
-            Save_JSON(self.cache, self.file_path).execute()
+                    Save_JSON(self.cache, self.file_path).execute()
             return True
         else:
             messagebox.showerror("Error", "Please connect to the internet!\nThen rerun the program.")

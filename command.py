@@ -36,7 +36,20 @@ class Date_Parser(Command):
         parsed_datetime = datetime.strptime(f"{month}/{day}/{year} {time_parse}",  "%m/%d/%Y %I:%M %p")
 
         return parsed_datetime
-    
+
+class Directory(Command):
+    def __init__(self):
+        pass
+
+    def execute(self):
+        directory = "softbot"
+        parent = "C:\\"
+        path = os.path.join(parent, directory)
+
+        if  not os.path.exists(path):
+            os.mkdir(path)
+            print(f"Created {path}")
+
 class Save_JSON(Command):
     def __init__(self, data, file_path):
         self.data = data
