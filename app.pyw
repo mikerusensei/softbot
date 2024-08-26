@@ -43,19 +43,8 @@ class App:
             if re.search(r'\b' + re.escape(keyword) + r'\b', article):
                 summary = summarize(title, article)
                 converted = ' '.join(summary)
-
-                if keyword in self.wheather_related_keywords:
-                    tips = "Maghanda sa paparating na pagbabago ng panahon"
-                elif keyword in self.land_related_keywords:
-                    tips = "Maging alerto sa iyong palagid"
-                elif keyword in self.emergency_situation_keywords:
-                    tips = "Lumapit sa pinakamalit na tanggapan ng gobyerno"
-                elif keyword in self.health_related_keywords:
-                    tips = "Palaging maghugas ng kamay at magbaon ng alcohol"
-                elif keyword in self.general_keywords:
-                    tips = "Maging alerto palagi at maging mapagmatyag!"
                 
-                message = f"Keyword: {keyword}\n{date}\n\n\"{title}\"\n-->{converted}\n\nTIPS:\n{tips}"
+                message = f"Keyword: {keyword}\n{date}\n\n\"{title}\"\n-->{converted}"
 
                 self.send_alert(message)
                 break
